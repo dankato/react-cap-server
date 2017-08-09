@@ -18,6 +18,13 @@ app.use(function(req, res, next) {
 
 mongoose.Promise = global.Promise;
 
+const path = require('path');
+
+// app.get('*', function (request, response){
+//   response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+// });
+
+
 // GET all
 app.get('/', (req, res) => {
   Post  
