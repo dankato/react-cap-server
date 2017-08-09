@@ -54,12 +54,13 @@ app.get('/', (req, res) => {
 
 // Post new post
 app.post('/post', (req, res) => {
+  console.log(req.body.text)
   Post
     .create({
       text: req.body.text
     })
     .then(posts => {
-      console.log('Post: ', posts);
+      console.log('Post: ', posts.apiRepr());
       res.status(201).json(posts.apiRepr());
     })
     .catch(err => {
