@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
 
@@ -114,6 +115,7 @@ app.put('/post/:id', (req, res) => {
 
 // Delete post by ID
 app.delete('/post/:id', (req, res) => {
+  console.log('app.delete\'s id', req.params.id);
   Post
     .findByIdAndRemove(req.params.id)
     .then(post => res.status(204).end())
