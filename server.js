@@ -59,9 +59,18 @@ app.post('/post', (req, res) => {
     .create({
       text: req.body.text
     })
-    .then(posts => {
-      console.log('Post: ', posts.apiRepr());
-      res.status(201).json(posts.apiRepr());
+    .then(post => {
+      console.log('Post: ', post.apiRepr());
+      Post  
+        .find()
+        .exec()
+        .then(posts => {
+          res.status(200).json(posts);
+        })
+        .catch(err => {
+          console.log('Get failed!');
+          res.status(500).json({message: 'Internal error from GET'});
+        })
     })
     .catch(err => {
       console.log('Post failed!');
